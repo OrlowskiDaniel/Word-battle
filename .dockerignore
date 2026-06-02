@@ -1,0 +1,27 @@
+# Version Control
+.git
+.gitignore
+
+# Package managers (we install these INSIDE the containers)
+vendor/
+node_modules/
+npm-debug.log
+
+# Laravel files that shouldn't be baked into the base image
+.env
+.env.*
+!.env.example
+storage/*.key
+storage/logs/*.log
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*.php
+bootstrap/cache/*.php
+
+# IDEs and OS junk
+.idea/
+.vscode/
+.cursor/
+.zed/
+.DS_Store
+Thumbs.db
