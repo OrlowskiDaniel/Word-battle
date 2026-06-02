@@ -1,13 +1,13 @@
-# Start everything
+## Start everything
 docker compose -f compose.dev.yaml up -d
 
-# Run Artisan commands
+## Run Artisan commands
 docker compose -f compose.dev.yaml exec workspace php artisan migrate
 
-# Watch Tailwind/assets
+## Watch Tailwind/assets
 docker compose -f compose.dev.yaml exec workspace npm run dev
 
-# Stop everything
+## Stop everything
 docker compose -f compose.dev.yaml down
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
@@ -19,46 +19,46 @@ docker compose -f compose.dev.yaml down
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## What each container does
-Container   What it does
-web       - Nginx — the web server, receives your browser requests on port 8080php-fpmPHP — actually runs your Laravel code
-workspace - A shell for you to run artisan/composer/npm commands
-postgres  - Your database
-redis     - Fast cache/session/queue storage
-pgadmin   - Web UI for database
+# What each container does
+Container   What it does <br>
+web       - Nginx — the web server, receives your browser requests on port 8080php-fpmPHP — actually runs your Laravel code <br>
+workspace - A shell for you to run artisan/composer/npm commands <br>
+postgres  - Your database <br>
+redis     - Fast cache/session/queue storage <br>
+pgadmin   - Web UI for database <br>
 
-# Flow
-The flow when you visit localhost:8080:
+## Flow
+The flow when you visit localhost:8080: <br>
 Browser → Nginx (web) → PHP-FPM → Laravel app → Postgres/Redis
 
-## Useful commands cheatsheet
-cmd# Start everything
+# Useful commands cheatsheet
+cmd# Start everything <br>
 docker compose -f compose.dev.yaml up -d
 
-# Stop everything
+### Stop everything
 docker compose -f compose.dev.yaml down
 
-# Run artisan commands
-docker compose -f compose.dev.yaml exec workspace php artisan migrate
-docker compose -f compose.dev.yaml exec workspace php artisan make:model Post -m
+### Run artisan commands
+docker compose -f compose.dev.yaml exec workspace php artisan migrate <br>
+docker compose -f compose.dev.yaml exec workspace php artisan make:model Post -m <br>
 docker compose -f compose.dev.yaml exec workspace php artisan tinker
 
-# Run composer
+### Run composer
 docker compose -f compose.dev.yaml exec workspace composer require some/package
 
-# Run npm
-docker compose -f compose.dev.yaml exec workspace npm run dev
+### Run npm
+docker compose -f compose.dev.yaml exec workspace npm run dev <br>
 docker compose -f compose.dev.yaml exec workspace npm run build
 
-# View logs
-docker compose -f compose.dev.yaml logs php-fpm
+### View logs
+docker compose -f compose.dev.yaml logs php-fpm <br>
 docker compose -f compose.dev.yaml logs web
 
-# Restart a single container
+### Restart a single container
 docker compose -f compose.dev.yaml restart php-fpm
 
-# Shell into any container
-docker compose -f compose.dev.yaml exec workspace bash
+### Shell into any container
+docker compose -f compose.dev.yaml exec workspace bash <br>
 docker compose -f compose.dev.yaml exec php-fpm bash
 
 ## About Laravel
