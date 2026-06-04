@@ -1,16 +1,16 @@
-## Start everything
+### Start everything
 docker compose -f compose.dev.yaml up -d
 
-## Run Artisan commands
+### Run Artisan commands
 docker compose -f compose.dev.yaml exec workspace php artisan migrate
 
-## Migrations
+### Migrations
 docker compose -f compose.dev.yaml exec workspace php artisan make:migration table
 
-## Watch Tailwind/assets
+### Watch Tailwind/assets
 docker compose -f compose.dev.yaml exec workspace npm run dev
 
-## Stop everything
+### Stop everything
 docker compose -f compose.dev.yaml down
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
@@ -31,7 +31,6 @@ redis     - Fast cache/session/queue storage <br>
 pgadmin   - Web UI for database <br>
 
 ## Flow
-The flow when you visit localhost:8080: <br>
 Browser → Nginx (web) → PHP-FPM → Laravel app → Postgres/Redis
 
 # Useful commands cheatsheet
