@@ -4,6 +4,9 @@ docker compose -f compose.dev.yaml up -d
 ## Run Artisan commands
 docker compose -f compose.dev.yaml exec workspace php artisan migrate
 
+## Migrations
+docker compose -f compose.dev.yaml exec workspace php artisan make:migration table
+
 ## Watch Tailwind/assets
 docker compose -f compose.dev.yaml exec workspace npm run dev
 
