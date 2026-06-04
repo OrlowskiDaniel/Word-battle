@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     /**
-     * All guesses this user has made
+     * all guesses this user has made
      */
     public function guesses(): HasMany
     {
@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Games this user has won
+     * games this user has won
      */
     public function wins(): HasMany
     {
@@ -64,7 +64,7 @@ class User extends Authenticatable
     }
 
     /**
-     * This user's game history
+     * this user game history
      */
     public function gameHistory(): HasMany
     {

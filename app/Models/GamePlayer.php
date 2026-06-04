@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GamePlayer extends Model
 {
-    // No timestamps — join events don't need them
+    // no timestamps join events don't need them
     public $timestamps = false;
 
     protected $fillable = [
