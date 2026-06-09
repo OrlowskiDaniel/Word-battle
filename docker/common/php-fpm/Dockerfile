@@ -3,6 +3,8 @@ FROM php:8.4-fpm AS production
 # Install system libs + PHP extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev libonig-dev libzip-dev libxml2-dev git unzip \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
     && docker-php-ext-install pdo_pgsql pgsql zip bcmath opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
