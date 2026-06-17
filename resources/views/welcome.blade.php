@@ -1,75 +1,83 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word Battle</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
 
-        <title>Word Battle</title>
-
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-            <style>/* fallback inline css */</style>
-        @endif
-    </head>
-    <body>
-
-        <div class="min-h-screen bg-[#1b1b18] text-white flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white">
-            
-            <header class="px-6 py-4 max-w-6xl w-full mx-auto flex justify-between items-center border-b border-zinc-800">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl font-black tracking-wider text-orange-500">🔠 WORD<span class="text-white">BATTLE</span></span>
-                </div>
-                <div class="flex items-center gap-4 text-sm text-gray-400">
-                    <span class="flex items-center gap-1.5">
-                        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        1,248 Online
-                    </span>
-                </div>
-            </header>
-
-            <main class="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-xl mx-auto w-full">
-                
-                <span class="px-3 py-1 text-xs uppercase font-semibold tracking-widest text-orange-400 bg-orange-950/40 border border-orange-900/50 rounded-full mb-6">
-                    ⚔️ Real-Time 1v1 Word Arena
-                </span>
-
-                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight mb-4">
-                    Two Minds. One Word.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500">Ultimate Bragging Rights.</span>
-                </h1>
-                
-                <p class="text-gray-400 text-base sm:text-lg mb-10 leading-relaxed">
-                    Face off against an opponent in a live race to crack the hidden word. Every guess yields critical clues. Will you outsmart them or get spoken?
-                </p>
-
-                <div class="w-full max-w-sm mb-12">
-                    <button class="w-full py-4 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-black font-black text-lg rounded-xl shadow-lg shadow-orange-500/20 active:scale-98 transition transform duration-150 tracking-wide cursor-pointer flex items-center justify-center gap-3">
-                        <span>⚔️</span> FIND A MATCH <span>⚔️</span>
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-3 gap-4 w-full border border-zinc-800 bg-zinc-900/30 p-4 rounded-xl text-center backdrop-blur-sm">
-                    <div>
-                        <p class="text-2xl font-bold text-white">42.9k</p>
-                        <p class="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mt-1">Duels Today</p>
-                    </div>
-                    <div class="border-x border-zinc-800">
-                        <p class="text-2xl font-bold text-orange-400">24 🔥</p>
-                        <p class="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mt-1">Top Streak</p>
-                    </div>
-                    <div>
-                        <p class="text-2xl font-bold text-white">100%</p>
-                        <p class="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mt-1">Free to Play</p>
-                    </div>
-                </div>
-
-            </main>
-
-            <footer class="pb-6 pt-8 text-center text-xs text-gray-600 border-t border-zinc-900 w-full max-w-6xl mx-auto">
-                <p>&copy; {{ date('Y') }} Word Battle Arena. All rights reserved. Made for word-smiths.</p>
-            </footer>
-
+    {{-- Nav --}}
+    <header class="border-b border-gray-200 dark:border-gray-800 dark:bg-gray-800">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="{{ route('home') }}" class="flex items-center">
+                <img src="{{ asset('word-battle-logo2.png') }}" alt="Word Battle Logo" class="h-16 w-auto" />
+            </a>
+            <nav class="flex items-center gap-4 text-sm">
+                @auth
+                    <a href="{{ route('dashboard') }}" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Log in</a>
+                    <a href="{{ route('register') }}" class="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-1.5 rounded-md text-sm font-medium hover:bg-gray-700 dark:hover:bg-gray-200">Register</a>
+                @endauth
+            </nav>
         </div>
-        </body>
+    </header>
+
+    {{-- Hero --}}
+    <main class="max-w-4xl mx-auto px-6">
+
+        <section class="py-24 max-w-xl">
+            <p class="text-xs font-semibold tracking-widest text-gray-400 dark:text-gray-500 uppercase mb-4">Turn-based word game</p>
+            <h1 class="text-4xl font-bold leading-tight mb-4 text-gray-900 dark:text-white">
+                Can you guess the word before your opponent?
+            </h1>
+            <p class="text-gray-500 dark:text-gray-400 text-lg mb-8 leading-relaxed">
+                Take turns guessing the hidden word. First to guess correctly wins. Challenge a friend or get matched with a random opponent.
+            </p>
+            <div class="flex gap-3">
+                @auth
+                    <a href="{{ route('games.create') }}" class="bg-gray-700 dark:bg-white text-white dark:text-gray-900 px-5 py-2.5 rounded-md font-medium hover:bg-gray-700 dark:hover:bg-gray-200">Start a game</a>
+                    <a href="{{ route('dashboard') }}" class="border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-md font-medium hover:bg-gray-50 dark:hover:bg-gray-800">Go to lobby</a>
+                @else
+                    <a href="{{ route('register') }}" class="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-5 py-2.5 rounded-md font-medium hover:bg-gray-700 dark:hover:bg-gray-200">Play for free</a>
+                    <a href="{{ route('login') }}" class="border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-5 py-2.5 rounded-md font-medium hover:bg-gray-50 dark:hover:bg-gray-800">Log in</a>
+                @endauth
+            </div>
+        </section>
+
+        <hr class="border-gray-200 dark:border-gray-800">
+
+        {{-- How it works --}}
+        <section class="py-16">
+            <h2 class="text-xs font-semibold tracking-widest text-gray-400 dark:text-gray-500 uppercase mb-10">How it works</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
+                <div>
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-2">01</div>
+                    <h3 class="font-semibold mb-1 text-gray-900 dark:text-gray-200">Start a game</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Invite a friend or join a random match. A word is secretly chosen.</p>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-2">02</div>
+                    <h3 class="font-semibold mb-1 text-gray-900 dark:text-gray-200">Take turns guessing</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Players alternate guessing the full word each turn. You get a hint and a question.</p>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-gray-900 dark:text-white mb-2">03</div>
+                    <h3 class="font-semibold mb-1 text-gray-900 dark:text-gray-200">First to win</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Guess the word correctly before your opponent and claim the win.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-200 dark:border-gray-800">
+
+        {{-- Footer --}}
+        <footer class="py-8 flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
+            <span>Word Battle &copy; {{ date('Y') }}</span>
+        </footer>
+
+    </main>
+</body>
 </html>
