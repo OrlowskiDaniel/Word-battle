@@ -14,20 +14,6 @@
                 <form method="POST" action="{{ route('games.store') }}">
                     @csrf
 
-                    <div class="mb-5">
-                        <x-input-label for="opponent_username" value="Invite a player (optional)" />
-                        <x-text-input
-                            id="opponent_username"
-                            name="opponent_username"
-                            type="text"
-                            class="mt-1 block w-full bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100"
-                            placeholder="Enter their username"
-                            value="{{ old('opponent_username') }}"
-                        />
-                        <x-input-error :messages="$errors->get('opponent_username')" class="mt-1" />
-                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-1.5">Leave empty to create an open game anyone can join.</p>
-                    </div>
-
                     <div class="mb-6">
                         <x-input-label for="category" value="Word category (optional)" />
                         <select id="category" name="category"
