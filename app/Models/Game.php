@@ -14,6 +14,8 @@ class Game extends Model
     use HasFactory;
 
     protected $primaryKey = 'game_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
         'word_id',
@@ -29,8 +31,9 @@ class Game extends Model
     // two players in this game
     public function players(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'game_players', 'game_id', 'user_id')
-                    ->withPivot('is_turn');
+        return $this->belongsToMany(User::class, 'game_players', 'game_id', 'user_id', 'game_id', 'user_id')
+                    ->withPivot('is_turn')
+                    ->withTimestamps();
     }
 
     // guesses 

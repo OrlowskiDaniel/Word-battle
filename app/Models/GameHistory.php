@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GameHistory extends Model
 {
+    protected $table = 'game_history';
     protected $primaryKey = 'history_id';
-
-    // no updated_at history need to be immutable
     public $timestamps = false;
 
     protected $fillable = [

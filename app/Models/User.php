@@ -18,6 +18,8 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $primaryKey = 'user_id';
+    public $incrementing = true;
+    protected $keyType = 'int';
     /**
      * Get the attributes that should be cast.
      *
@@ -43,7 +45,7 @@ class User extends Authenticatable
     // relationships
     public function games(): BelongsToMany
     {
-        return $this->belongsToMany(Game::class, 'game_players', 'user_id', 'game_id')
+        return $this->belongsToMany(Game::class, 'game_players', 'user_id', 'game_id', 'user_id', 'game_id')
                     ->withPivot('is_turn');
     }
 
